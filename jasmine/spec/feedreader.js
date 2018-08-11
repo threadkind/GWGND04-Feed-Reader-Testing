@@ -57,9 +57,17 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        const b = document.querySelector('body');
+        const menuIcon = $('.menu-icon');
+
+        beforeEach(function(){
+            spyEvent = spyOn(menuIcon, 'click');
+            });
+
+
         it('is hidden by default', function(){
-            const b = document.querySelector('body');
-            expect(b.classList[0]).toEqual('menu-hidden');
+            expect(spyEvent).not.toHaveBeenCalled();
+            expect(b.classList[0]).toContain('menu-hidden');
         });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -68,6 +76,20 @@ $(function() {
           */
         it('changes visibility when the menu item is clicked', function(){
             expect($('.slide-menu').is(':visible')).toBe(true);
+            expect(spyEvent).not.toHaveBeenCalled();
+
+            menuIcon.on('click', function() {
+                if(b.classList.contains('menu-hidden')){
+                    $('body').toggleClass('menu-hidden');
+                    console.log('hidden');
+                }
+                else {
+                    console.log('not hidden');
+                }
+
+
+    });
+
         });
     });
 
