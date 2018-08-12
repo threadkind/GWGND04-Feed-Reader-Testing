@@ -9,6 +9,7 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
+    // var feed1, feed2;
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
@@ -125,6 +126,7 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function(){
+    var feed1, feed2;
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
@@ -133,25 +135,17 @@ $(function() {
          // var feed1, feed2;
 
         beforeEach(function(done){
-            // loadFeed(0, function(){
-            //         done();
-            // });
 
-            loadFeed(0, function(){
-                const feed1 = document.querySelector('.feed .entry h2');
-                done();
-            });
+    loadFeed(0, function () {
+        feed1 = $('.feed .entry h2').first().text();
+    });
+    $('.feed').empty();
+    loadFeed(1, function () {
+        feed2 = $('.feed .entry h2').first().text();
+        done();
+    });
 
-
-            loadFeed(1, function(){
-                const feed2 = document.querySelector('.feed .entry h2');
-
-            done();
-            });
-
-            //console.log(feed2);
-            done();
-        });
+});
 
         it('changes the content when a new feed is loaded by the loadFeed function', function(){
             //var feed0 = document.querySelector('.feed');
@@ -163,7 +157,9 @@ $(function() {
             console.log(feed1);
             console.log(feed2);
 
-            expect(feed1).not.toEqual(feed2);
+            //expect(feed1).not.toEqual(feed2);
+                expect(feed1).not.toBe(feed2);
+
         });
     });
 
