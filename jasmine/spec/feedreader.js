@@ -45,7 +45,7 @@ $(function() {
 
 
     // Test suite to test the menu
-    describe('The menu', function() {
+    describe('The Menu', function() {
 
         // Set variables to get the body element and the menu icon link element
         const b = $('body');
