@@ -130,7 +130,7 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-         var feed1, feed2;
+         // var feed1, feed2;
 
         beforeEach(function(done){
             // loadFeed(0, function(){
@@ -138,29 +138,32 @@ $(function() {
             // });
 
             loadFeed(0, function(){
-                feed1 = document.querySelector('.feed .entry h2').innerText;
+                const feed1 = document.querySelector('.feed .entry h2');
                 done();
             });
 
-            console.log(feed1);
+
             loadFeed(1, function(){
-                            feed2 = document.querySelector('.feed .entry h2').innerText;
+                const feed2 = document.querySelector('.feed .entry h2');
 
             done();
             });
 
-            console.log(feed2);
+            //console.log(feed2);
             done();
         });
 
-        it('changes the content when a new feed is loaded by the loadFeed function', function(done){
+        it('changes the content when a new feed is loaded by the loadFeed function', function(){
             //var feed0 = document.querySelector('.feed');
 
             // waitsFor(function(){
             //     return
             // });
+
+            console.log(feed1);
+            console.log(feed2);
+
             expect(feed1).not.toEqual(feed2);
-            done();
         });
     });
 
