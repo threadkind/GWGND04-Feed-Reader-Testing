@@ -79,11 +79,15 @@ $(function() {
 
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function(){
-        var testfeed, ent;
         beforeEach(function(done){
             // loadFeed(Math.floor(Math.random()*4));
-            loadFeed(0);
-            done();
+            loadFeed(Math.floor(Math.random()*4), function(){
+                done();
+            });
+            // const testChildren = $('.feed').children();
+            // console.log(testChildren);
+
+            // done();
         });
 
         /* TODO: Write a test that ensures when the loadFeed
@@ -92,18 +96,21 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         it('have at least a single .entry element within the .feed container', function(done){
-            testfeed = document.querySelector('.feed');
-            ent = testfeed.querySelectorAll('.entry');
+         it('have at least a single .entry element within the .feed container', function(){
+            // const testfeed = $('.feed');
+            // let ent = testfeed.querySelectorAll('.entry');
 
-            console.log(testfeed);
-            console.log(ent);
+            // console.log(testfeed);
+            // console.log(ent + "ENT");
 
             // var feedChildren = testfeed.children;
             // var article = document.querySelector('.entry');
 
             // var entries = [];
-            expect(testfeed.length).toBeGreaterThan(0);
+            expect($('.feed .entry')).toBeDefined();
+            expect($('.feed .entry').length).toBeGreaterThan(0);
+            console.log($('.entry .feed'));
+            console.log($('.feed .entry').length);
 
             // for(var i = 0; i < feedChildren.length; i++){
             //     entries.push(feedChildren[i]);
@@ -111,7 +118,7 @@ $(function() {
 
             // console.log(feedChildren);
             // console.log(article);
-            done();
+            // done();
          });
    });
 
@@ -126,13 +133,22 @@ $(function() {
          var feed1, feed2;
 
         beforeEach(function(done){
+            // loadFeed(0, function(){
+            //         done();
+            // });
+
             loadFeed(0, function(){
-                feed1 = document.querySelector('.feed');
+                feed1 = document.querySelector('.feed .entry h2').innerText;
+                done();
             });
+
             console.log(feed1);
             loadFeed(1, function(){
-                feed2 = document.querySelector('.feed');
+                            feed2 = document.querySelector('.feed .entry h2').innerText;
+
+            done();
             });
+
             console.log(feed2);
             done();
         });
