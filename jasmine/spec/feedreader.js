@@ -102,18 +102,20 @@ $(function() {
 
         // Since the feeds are asynchronous they must be loaded before we can compare them
         beforeEach(function(done){
-            // Load the first feed and store the headline from the first entry in a variable
+        //     // Load the first feed and store the headline from the first entry in a variable
             loadFeed(0, function () {
                 feed1 = $('.feed .entry h2').first().text();
-            });
 
-            loadFeed(1, function () {
-                // Load the second feed and store the headline from the first entry in a variable
-                feed2 = $('.feed .entry h2').first().text();
+                loadFeed(1, function () {
+                // Load the second feed as a callback and store the headline from the first entry in a variable
+                    feed2 = $('.feed .entry h2').first().text();
+
                 // Let the beforeEach function know we are done with loading feeds and can move on
-                done();
+                    done();
+                });
             });
         });
+
 
         it('changes the content when a new feed is loaded by the loadFeed function', function(){
             // Compare the first headline to the second headline and make sure they do know match. This way we know the content is changing when a new feed is loading.
